@@ -22,7 +22,7 @@
                             <div class="col s12">
                                 <h4 class="center-align">Vendor's Form</h4>
                                 <div class="row">
-                                    <form class="col s12" action="" method="post">
+                                    <form class="col s12" action="/" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <input id="first_name" name="name" type="text" class="validate">
@@ -43,14 +43,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="number" type="text" class="validate" name="number" required>
-                                                <label for="email">Number</label>
+                                                <input id="number" type="text" class="validate" name="number" >
+                                                <label for="number">Number</label>
                                             </div>
                                             <div class="input-field col s12">
                                                 <div class="file-field">
                                                     <div class="btn btn-primary btn-sm float-left">
                                                         <span>Choose Image</span>
-                                                        <input type="file" name="file" multiple>
+                                                        <input type="file" name="image">
                                                     </div>
                                                     <div class="file-path-wrapper">
                                                         <input class="file-path validate" name="fileName" type="text" placeholder="Upload one or more files">
@@ -63,75 +63,88 @@
                                                 <label>Menu</label>
                                                 <br><br>
                                             </div>
-                                            <div class="col s12">
-                                                <div class="row">
-                                                    <div class="col s3">
-                                                        <div class="row">
-                                                            <div class="col s12">
-                                                                <label for="">Type</label>
-                                                            </div>
-                                                            <div class="col s12">
-                                                                <select class="browser-default" id="type" name="type">
-                                                                    <option value="1">FOOD</option>
-                                                                    <option value="2">DRINK</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col s3">
-                                                        <div class="row">
-                                                            <div class="col s12">
-                                                                <label for="">Item</label>
-                                                            </div>
-                                                            <div class="col s12">
-                                                                <input type="text" name="item" id="item">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col s3">
-                                                        <div class="row">
-                                                            <div class="col s12">
-                                                                <label for="">Price</label>
-                                                            </div>
-                                                            <div class="col s12">
-                                                                <input type="text" id="price" name="price">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col s3">
-                                                        <button class="btn waves-effect waves-light" id="addItem" type="button">Add</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <!--<div class="col s12">-->
+                                                <!--<div class="row">-->
+                                                    <!--<div class="col s3">-->
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<label for="type">Type</label>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<select class="browser-default" id="type" name="type">-->
+                                                                    <!--<option value="1">FOOD</option>-->
+                                                                    <!--<option value="2">DRINK</option>-->
+                                                                <!--</select>-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col s3">-->
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<label for="">Item</label>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<input type="text" name="item" id="item">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col s3">-->
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<label for="">Price</label>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col s12">-->
+                                                                <!--<input type="text" id="price" name="price">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col s3">-->
+                                                        <!--<button class="btn waves-effect waves-light" id="addItem" type="button">Add</button>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
                                         </div>
                                         <div class="row">
                                             <div class="col s6"><h5>Food</h5></div>
                                             <div class="col s6"><h5>Drinks</h5></div>
                                             <div class="col s6">
-                                                <table>
+                                                <table name="ftable">
                                                     <thead>
                                                     <tr>
                                                         <th>Item</th>
                                                         <th>Price</th>
                                                     </tr>
                                                     </thead>
-
                                                     <tbody id="food">
+                                                        <td>
+                                                            <input type="text" name="fitem[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="fprice[]">
+                                                        </td>
                                                     </tbody>
                                                 </table>
+                                                <button class="btn waves-effect waves-light" id="addFoodItem" type="button">Add</button>
                                             </div>
+
                                             <div class="col s6">
-                                                <table>
+                                                <table name="dtable">
                                                     <thead>
                                                     <tr>
                                                         <th>Item</th>
                                                         <th>Price</th>
                                                     </tr>
                                                     </thead>
-
                                                     <tbody id="drink">
+                                                        <td>
+                                                            <input type="text" name="ditem[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="dprice[]">
+                                                        </td>
                                                     </tbody>
                                                 </table>
+                                                <button class="btn waves-effect waves-light" id="addDrinkItem" type="button">Add</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -150,11 +163,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="monthly" type="text" class="validate" name="monthly" required>
+                                                <input id="monthly" type="text" class="validate" name="monthly" >
                                                 <label for="monthly">Monthly Earning</label>
                                             </div>
                                             <div class="input-field col s12">
-                                                <input id="yearly" type="text" class="validate" name="yearly" required>
+                                                <input id="yearly" type="text" class="validate" name="yearly" >
                                                 <label for="yearly">Yearly Earning</label>
                                             </div>
                                             <div class="input-field col s12">
@@ -189,25 +202,31 @@
                                                 <br><br>
                                             </div>
                                             <div class="col s12" id="location">
-                                                <div class="row">
-                                                    <div class="col s12">
-                                                        <label for="end">Location</label>
-                                                        <input id="end" name="location">
-                                                        <!--<input id="end">-->
-                                                    </div>
-                                                    <div class="input-field col s12">
-                                                        <input id="start" type="text" class="timepicker validate" name="start" required>
-                                                        <label for="start">Start time</label>
-                                                    </div>
-                                                    <div class="input-field col s12">
-                                                        <input id="last" type="text" class="timepicker validate" name="last" required>
-                                                        <label for="last">Last time</label>
-                                                    </div>
-                                                </div>
+                                                <!--<div class="row">-->
+                                                    <!--<div class="col s12">-->
+                                                        <!--<label for="end">Location</label>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="input-field col s12">-->
+                                                        <!--<label for="start">Start time</label>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="input-field col s12">-->
+                                                        <!--<label for="last">Last time</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
                                                 <!--<input id="start" readonly value="India">-->
                                                 <!--<input type="button" value="GO" onclick="calcRoute()">-->
 
-                                                <input type="button" value="Drop Pin" onclick="dropPin()"> Drop a marker on the center of your map<br>
+                                                <div class="row">
+                                                    <div class="col s6">
+                                                        <input type="button" class="btn" value="Drop Pin" onclick="dropPin()">
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <input type="button" class="btn" value="Finalize" onclick="finalize()"><br>
+                                                    </div>
+                                                    <div class="col s12">
+                                                        <input id="end">
+                                                    </div>
+                                                </div>
 
                                                 <div id="map"></div>
                                                 <style>
@@ -217,26 +236,38 @@
                                                 </style>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col s3">
-                                                <button class="btn btn-large waves-effect waves-light" id="addlAndT" type="button">Add</button>
-                                            </div>
-                                        </div>
+                                        <!--<div class="row">-->
+                                            <!--<div class="col s3">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                         <div class="row">
                                             <div class="col s12"><h5>Location and time table</h5></div>
                                             <div class="col s12">
-                                                <table>
+                                                <table name="ltable">
                                                     <thead>
                                                     <tr>
                                                         <th>LatLngs</th>
                                                         <th>Start</th>
                                                         <th>End</th>
+                                                        <th>Pin</th>
                                                     </tr>
                                                     </thead>
-
                                                     <tbody id="lAndT">
+                                                        <td>
+                                                            <input type="text" name="location[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="timepicker validate" name="start[]" >
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="timepicker validate" name="last[]" >
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="pin[]" >
+                                                        </td>
                                                     </tbody>
                                                 </table>
+                                                <button class="btn btn-large waves-effect waves-light" id="addlAndT" type="button">Add</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -275,19 +306,20 @@
                                                     <option value="2">Unavailable</option>
                                                 </select>
                                             </div>
+
+                                            <div id="availableBlock">
+                                                <div class="input-field col s12">
+                                                    <label for="dAvailable">Delivery Available</label>
+                                                    <br/>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <select class="browser-default" id="dAvailable" name="dAvailable">
+                                                        <option value="1">Personal</option>
+                                                        <option value="2">Food Tech</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row" id="availableBlock">
-                                            <div class="input-field col s12">
-                                                <label for="dAvailable">Delivery Available</label>
-                                                <br/>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <select class="browser-default" id="dAvailable" name="dAvailable">
-                                                    <option value="1">Personal</option>
-                                                    <option value="2">Food Tech</option>
-                                                </select>
-                                            </div>
-                                            </div>
                                         <div class="row" id="presence2" style="display: none;">
                                             <div class="col s12">
                                                 <h4>Moving</h4>
@@ -317,7 +349,7 @@
                                         <div class="divider"></div>
                                         <div class="row">
                                             <div class="col m12">
-                                                <p class="right-align"><button class="btn btn-large waves-effect waves-light" type="button" name="action">Submit</button></p>
+                                                <p class="right-align"><button class="btn btn-large waves-effect waves-light" name="action">Submit</button></p>
                                             </div>
                                         </div>
                                     </form>
@@ -450,24 +482,36 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 
 
-    $("#addItem").on('click', function () {
-        var type = $("#type").val();
-        var item = $("#item").val();
-        var price = $("#price").val();
-        console.log(type  + item + price);
-        if(type == 1){
-            $('#food').append("<tr><td>" + item + "</td><td>"+ price +"</td></tr>");
-        }else{
-            $('#drink').append("<tr><td>" + item + "</td><td>"+ price +"</td></tr>");
-        }
+    // $("#addItem").on('click', function () {
+    //     var type = $("#type").val();
+    //     var item = $("#item").val();
+    //     var price = $("#price").val();
+    //     console.log(type  + item + price);
+    //     if(type == 1){
+    //         $('#food').append("<tr><td name = 'fitem[]'>" + item + "</td><td name='fprice[]'>"+ price +"</td></tr>");
+    //     }else{
+    //         $('#drink').append("<tr><td name = 'ditem[]'>" + item + "</td><td name = dprice[]'>"+ price +"</td></tr>");
+    //     }
+    // });
+
+    $("#addFoodItem").on("click", function () {
+        $('#food').append("<tr><td><input type='text' name='fitem[]' /></td><td><input type='text' name='fprice[]' /></td></tr>");
+    });
+    $("#addDrinkItem").on("click", function () {
+        $('#drink').append("<tr><td><input type='text' name='ditem[]' /></td><td><input type='text' name='dprice[]' /></td></tr>");
     });
 
-    $("#addlAndT").on("click", function () {
-        var end = $("#end").val();
-        var start = $("#start").val();
-        var last = $("#last").val();
-        $("#lAndT").append("<tr><td>" + end + "</td><td>"+ start +"</td><td>" + last +"</td></tr>");
+    function finalize(){
         geocodeLatLng(geocoder, map, infoWindow);
+    }
+
+    $("#addlAndT").on("click", function () {
+
+        $("#lAndT").append("<tr><td><input name='location[]'></td><td><input type='text' class='timepicker validate' name='start[]' ></td><td><input type='text' class='timepicker validate' name='last[]' ></td><td><input type='text' name='pin[]'/></td></tr>");
+
+        $(document).ready(function(){
+            $('.timepicker').timepicker();
+        });
     });
 
     $("body").on("change", "#presence", function () {
