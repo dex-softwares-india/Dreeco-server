@@ -43,7 +43,7 @@ app.get('/', function(req,res){
     res.render("form");
 });
 
-app.post("/", upload.single('image'), function(req,res){
+app.post("/", upload.single('image'), function(req,response){
     let name = req.body.name;
     console.log(req.body);
     var x = [];
@@ -59,11 +59,17 @@ app.post("/", upload.single('image'), function(req,res){
     pool.query(query, function (err, res) {
         if(err)
             console.log("ERROR:" + err);
-        else
+        else {
             console.log(res.rows[0]);
+            response.redirect("done");
+        }
     });
-    res.render("form");
 });
+
+app.get("/done", (req,res) => {
+   res.render("done");
+});
+
 app.listen(process.env.PORT || 8000, function(){
     console.log("server started!");
 });
